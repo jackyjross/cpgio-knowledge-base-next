@@ -1,63 +1,142 @@
-export default function HomePage() {
-  return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-8">
-      <div className="max-w-4xl mx-auto text-center space-y-8">
-        <h1 className="text-5xl font-bold text-primary">
-          CPGIO Knowledge Base
-        </h1>
-        <p className="text-xl text-text-secondary">
-          Choose your path: discover our capabilities, evaluate us for an RFP, or access internal resources.
-        </p>
+'use client';
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-          <div className="p-6 border border-border rounded-lg hover:border-accent-blue hover:shadow-lg transition-all cursor-pointer">
+import { useState } from 'react';
+import { capabilities, getAllPillars, getCapabilitiesByPillar, getPillarCounts } from '@/lib/data/capabilities';
+import { ChevronDown, Users, FileText, Sparkles } from 'lucide-react';
+
+export default function HomePage() {
+  const [expandedPillar, setExpandedPillar] = useState<string | null>(null);
+
+  const pillars = getAllPillars();
+  const pillarCounts = getPillarCounts();
+
+  const togglePillar = (pillar: string) => {
+    setExpandedPillar(expandedPillar === pillar ? null : pillar);
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col p-8">
+      <div className="max-w-6xl mx-auto w-full space-y-12">
+        {/* Hero Section */}
+        <div className="text-center space-y-4">
+          <h1 className="text-5xl font-bold text-primary">
+            CPGIO Knowledge Base
+          </h1>
+          <p className="text-xl text-text-secondary max-w-3xl mx-auto">
+            Choose your path: discover our capabilities, evaluate us for an RFP, or access internal resources.
+          </p>
+        </div>
+
+        {/* Three Journey Pathways */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="p-6 border border-border rounded-lg hover:border-accent-blue hover:shadow-lg transition-all cursor-pointer group">
             <div className="w-14 h-14 bg-bg-accent-blue rounded-md flex items-center justify-center mb-4 mx-auto">
-              <svg className="w-7 h-7 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-              </svg>
+              <Users className="w-7 h-7 text-accent-blue" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">New to CPGIO?</h3>
-            <p className="text-text-secondary text-base">
-              Explore our 5 strategic pillars and 12 core capabilities with proven KPIs and case studies.
+            <h3 className="text-xl font-semibold mb-2 text-center">New to CPGIO?</h3>
+            <p className="text-text-secondary text-base text-center mb-4">
+              Explore our 5 strategic pillars and {capabilities.length} core capabilities with proven KPIs and case studies.
             </p>
-            <div className="mt-4 text-accent-blue font-semibold text-sm">
+            <div className="text-center text-accent-blue font-semibold text-sm group-hover:translate-x-1 transition-transform">
               Explore Capabilities →
             </div>
           </div>
 
-          <div className="p-6 border border-border rounded-lg hover:border-accent-blue hover:shadow-lg transition-all cursor-pointer">
+          <div className="p-6 border border-border rounded-lg hover:border-accent-blue hover:shadow-lg transition-all cursor-pointer group">
             <div className="w-14 h-14 bg-bg-accent-blue rounded-md flex items-center justify-center mb-4 mx-auto">
-              <svg className="w-7 h-7 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
+              <FileText className="w-7 h-7 text-accent-blue" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">Evaluating Us?</h3>
-            <p className="text-text-secondary text-base">
+            <h3 className="text-xl font-semibold mb-2 text-center">Evaluating Us?</h3>
+            <p className="text-text-secondary text-base text-center mb-4">
               Get direct answers to common RFP questions with copy-paste responses and supporting data.
             </p>
-            <div className="mt-4 text-accent-blue font-semibold text-sm">
+            <div className="text-center text-accent-blue font-semibold text-sm group-hover:translate-x-1 transition-transform">
               Browse RFP Center →
             </div>
           </div>
 
-          <div className="p-6 border border-border rounded-lg hover:border-accent-blue hover:shadow-lg transition-all cursor-pointer">
+          <div className="p-6 border border-border rounded-lg hover:border-accent-blue hover:shadow-lg transition-all cursor-pointer group">
             <div className="w-14 h-14 bg-bg-accent-blue rounded-md flex items-center justify-center mb-4 mx-auto">
-              <svg className="w-7 h-7 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-              </svg>
+              <Sparkles className="w-7 h-7 text-accent-blue" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">Internal Team?</h3>
-            <p className="text-text-secondary text-base">
+            <h3 className="text-xl font-semibold mb-2 text-center">Internal Team?</h3>
+            <p className="text-text-secondary text-base text-center mb-4">
               Use AI-powered search to find specific answers, case studies, or prep for client calls.
             </p>
-            <div className="mt-4 text-accent-blue font-semibold text-sm">
+            <div className="text-center text-accent-blue font-semibold text-sm group-hover:translate-x-1 transition-transform">
               Search Knowledge Base →
             </div>
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-border">
-          <h2 className="text-2xl font-semibold mb-6">Performance Highlights</h2>
+        {/* Pillar Cards Section */}
+        <div className="space-y-6">
+          <div className="text-center space-y-2">
+            <h2 className="text-3xl font-semibold">Our 5 Strategic Pillars</h2>
+            <p className="text-text-secondary">
+              Click any pillar to expand and see specific capabilities with KPIs.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            {pillars.map((pillar) => {
+              const pillarCapabilities = getCapabilitiesByPillar(pillar);
+              const isExpanded = expandedPillar === pillar;
+
+              return (
+                <div key={pillar} className="border border-border rounded-lg overflow-hidden hover:border-accent-blue transition-colors">
+                  <button
+                    onClick={() => togglePillar(pillar)}
+                    className="w-full p-6 flex items-center justify-between bg-bg-secondary hover:bg-bg-hover transition-colors"
+                  >
+                    <div className="flex-1 text-left">
+                      <h3 className="text-lg font-semibold text-primary">{pillar}</h3>
+                      <p className="text-sm text-text-secondary mt-1">
+                        {pillarCounts[pillar]} {pillarCounts[pillar] === 1 ? 'Capability' : 'Capabilities'}
+                      </p>
+                    </div>
+                    <ChevronDown
+                      className={`w-5 h-5 text-text-secondary transition-transform ${
+                        isExpanded ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+
+                  {isExpanded && (
+                    <div className="p-4 bg-bg-tertiary space-y-3">
+                      {pillarCapabilities.map((cap) => (
+                        <div
+                          key={cap.id}
+                          className="p-4 bg-bg-primary border border-border rounded-md hover:border-accent-blue hover:shadow-sm transition-all cursor-pointer"
+                        >
+                          <div className="flex items-start justify-between mb-2">
+                            <h4 className="font-semibold text-primary">{cap.title}</h4>
+                            <span className="text-accent-blue text-sm">→</span>
+                          </div>
+                          <p className="text-sm text-text-secondary mb-3">{cap.description}</p>
+                          <div className="flex flex-wrap gap-2">
+                            {cap.kpis.slice(0, 3).map((kpi, idx) => (
+                              <span
+                                key={idx}
+                                className="text-xs px-3 py-1 bg-bg-accent-blue text-accent-blue rounded-full font-medium"
+                              >
+                                {kpi.metric}: {kpi.value}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Performance Highlights */}
+        <div className="space-y-6 pt-8 border-t border-border">
+          <h2 className="text-2xl font-semibold text-center">Performance Highlights</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             <div className="text-center">
               <div className="text-3xl font-bold text-accent-blue">48K units/hr</div>
@@ -86,8 +165,10 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="mt-8 text-text-tertiary text-sm">
-          <p>Next.js Production Build • Phase 1: Foundation Complete</p>
+        {/* Footer Note */}
+        <div className="text-center text-text-tertiary text-sm py-8">
+          <p>Next.js Production Build • Phase 2: Data Migration Complete</p>
+          <p className="mt-1">{capabilities.length} Capabilities • 5 Pillars • TypeScript</p>
         </div>
       </div>
     </div>
