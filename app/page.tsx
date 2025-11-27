@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { capabilities, getAllPillars, getCapabilitiesByPillar, getPillarCounts } from '@/lib/data/capabilities';
 import { ChevronDown, Users, FileText, Sparkles } from 'lucide-react';
 
@@ -29,7 +30,7 @@ export default function HomePage() {
 
         {/* Three Journey Pathways */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-6 border border-border rounded-lg hover:border-accent-blue hover:shadow-lg transition-all cursor-pointer group">
+          <Link href="/capabilities" className="p-6 border border-border rounded-lg hover:border-accent-blue hover:shadow-lg transition-all cursor-pointer group">
             <div className="w-14 h-14 bg-bg-accent-blue rounded-md flex items-center justify-center mb-4 mx-auto">
               <Users className="w-7 h-7 text-accent-blue" />
             </div>
@@ -40,7 +41,7 @@ export default function HomePage() {
             <div className="text-center text-accent-blue font-semibold text-sm group-hover:translate-x-1 transition-transform">
               Explore Capabilities →
             </div>
-          </div>
+          </Link>
 
           <div className="p-6 border border-border rounded-lg hover:border-accent-blue hover:shadow-lg transition-all cursor-pointer group">
             <div className="w-14 h-14 bg-bg-accent-blue rounded-md flex items-center justify-center mb-4 mx-auto">
@@ -105,12 +106,13 @@ export default function HomePage() {
                   {isExpanded && (
                     <div className="p-4 bg-bg-tertiary space-y-3">
                       {pillarCapabilities.map((cap) => (
-                        <div
+                        <Link
                           key={cap.id}
-                          className="p-4 bg-bg-primary border border-border rounded-md hover:border-accent-blue hover:shadow-sm transition-all cursor-pointer"
+                          href={`/capabilities/${cap.id}`}
+                          className="block p-4 bg-bg-primary border border-border rounded-md hover:border-accent-blue hover:shadow-sm transition-all"
                         >
                           <div className="flex items-start justify-between mb-2">
-                            <h4 className="font-semibold text-primary">{cap.title}</h4>
+                            <h4 className="font-semibold text-primary hover:text-accent-blue transition-colors">{cap.title}</h4>
                             <span className="text-accent-blue text-sm">→</span>
                           </div>
                           <p className="text-sm text-text-secondary mb-3">{cap.description}</p>
@@ -124,7 +126,7 @@ export default function HomePage() {
                               </span>
                             ))}
                           </div>
-                        </div>
+                        </Link>
                       ))}
                     </div>
                   )}
