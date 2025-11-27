@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
+import { Navigation } from "./components/ui/Navigation";
 import "./globals.css";
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-plus-jakarta",
+});
 
 export const metadata: Metadata = {
   title: "CPGIO Knowledge Base | Capabilities, KPIs & RFP Intelligence",
@@ -35,8 +43,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        {children}
+      <body className={`${plusJakarta.variable} font-sans antialiased`}>
+        <Navigation />
+        <div className="pt-20">
+          {children}
+        </div>
       </body>
     </html>
   );

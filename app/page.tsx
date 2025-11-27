@@ -3,7 +3,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { capabilities, getAllPillars, getCapabilitiesByPillar, getPillarCounts } from '@/lib/data/capabilities';
-import { ChevronDown, Users, FileText, Sparkles } from 'lucide-react';
+import { ChevronDown, Users, FileText, Sparkles, ArrowRight } from 'lucide-react';
+import { MeshGradient } from './components/ui/MeshGradient';
+import { GlassCard } from './components/ui/GlassCard';
+import { HeroText } from './components/animations/HeroText';
+import { FadeIn } from './components/animations/FadeIn';
+import { CountUp } from './components/animations/CountUp';
 
 export default function HomePage() {
   const [expandedPillar, setExpandedPillar] = useState<string | null>(null);
@@ -15,164 +20,184 @@ export default function HomePage() {
     setExpandedPillar(expandedPillar === pillar ? null : pillar);
   };
 
+  const journeyCards = [
+    {
+      icon: Users,
+      title: 'New to CPGIO?',
+      description: `Explore our 5 strategic pillars and ${capabilities.length} core capabilities with proven KPIs and case studies.`,
+      cta: 'Explore Capabilities',
+      href: '/capabilities',
+      color: 'blue',
+    },
+    {
+      icon: FileText,
+      title: 'Evaluating Us?',
+      description: 'Get direct answers to common RFP questions with copy-paste responses and supporting data.',
+      cta: 'Browse RFP Center',
+      href: '/rfp-center',
+      color: 'purple',
+    },
+    {
+      icon: Sparkles,
+      title: 'Internal Team?',
+      description: 'Use AI-powered search to find specific answers, case studies, or prep for client calls.',
+      cta: 'Search Knowledge Base',
+      href: '/search',
+      color: 'teal',
+    },
+  ];
+
+  const performanceMetrics = [
+    { value: '48K units/hr', label: 'Peak Velocity' },
+    { value: '5-8x', label: 'ROAS Range' },
+    { value: '$526K', label: 'Monthly Revenue Recovery' },
+    { value: '800+', label: 'ASINs Launched' },
+    { value: '56', label: 'Sellers Removed' },
+    { value: '<0.01%', label: 'Defect Rate' },
+  ];
+
   return (
-    <div className="min-h-screen flex flex-col p-8">
-      <div className="max-w-6xl mx-auto w-full space-y-12">
-        {/* Hero Section */}
-        <div className="text-center space-y-4">
-          <h1 className="text-5xl font-bold text-primary">
-            CPGIO Knowledge Base
-          </h1>
-          <p className="text-xl text-text-secondary max-w-3xl mx-auto">
-            Choose your path: discover our capabilities, evaluate us for an RFP, or access internal resources.
-          </p>
-        </div>
+    <>
+      <MeshGradient />
 
-        {/* Three Journey Pathways */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Link href="/capabilities" className="p-6 border border-border rounded-lg hover:border-accent-blue hover:shadow-lg transition-all cursor-pointer group">
-            <div className="w-14 h-14 bg-bg-accent-blue rounded-md flex items-center justify-center mb-4 mx-auto">
-              <Users className="w-7 h-7 text-accent-blue" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2 text-center">New to CPGIO?</h3>
-            <p className="text-text-secondary text-base text-center mb-4">
-              Explore our 5 strategic pillars and {capabilities.length} core capabilities with proven KPIs and case studies.
+      <div className="min-h-screen flex flex-col p-8 relative">
+        <div className="max-w-7xl mx-auto w-full space-y-20">
+          {/* Hero Section */}
+          <FadeIn className="text-center space-y-6 pt-12 pb-8">
+            <HeroText
+              text="The Intelligence Engine for CPG Growth"
+              className="text-6xl md:text-7xl font-bold"
+              gradient
+            />
+            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto font-medium">
+              Choose your path: discover our capabilities, evaluate us for an RFP, or access internal resources.
             </p>
-            <div className="text-center text-accent-blue font-semibold text-sm group-hover:translate-x-1 transition-transform">
-              Explore Capabilities →
-            </div>
-          </Link>
+          </FadeIn>
 
-          <div className="p-6 border border-border rounded-lg hover:border-accent-blue hover:shadow-lg transition-all cursor-pointer group">
-            <div className="w-14 h-14 bg-bg-accent-blue rounded-md flex items-center justify-center mb-4 mx-auto">
-              <FileText className="w-7 h-7 text-accent-blue" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2 text-center">Evaluating Us?</h3>
-            <p className="text-text-secondary text-base text-center mb-4">
-              Get direct answers to common RFP questions with copy-paste responses and supporting data.
-            </p>
-            <div className="text-center text-accent-blue font-semibold text-sm group-hover:translate-x-1 transition-transform">
-              Browse RFP Center →
-            </div>
-          </div>
-
-          <div className="p-6 border border-border rounded-lg hover:border-accent-blue hover:shadow-lg transition-all cursor-pointer group">
-            <div className="w-14 h-14 bg-bg-accent-blue rounded-md flex items-center justify-center mb-4 mx-auto">
-              <Sparkles className="w-7 h-7 text-accent-blue" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2 text-center">Internal Team?</h3>
-            <p className="text-text-secondary text-base text-center mb-4">
-              Use AI-powered search to find specific answers, case studies, or prep for client calls.
-            </p>
-            <div className="text-center text-accent-blue font-semibold text-sm group-hover:translate-x-1 transition-transform">
-              Search Knowledge Base →
-            </div>
-          </div>
-        </div>
-
-        {/* Pillar Cards Section */}
-        <div className="space-y-6">
-          <div className="text-center space-y-2">
-            <h2 className="text-3xl font-semibold">Our 5 Strategic Pillars</h2>
-            <p className="text-text-secondary">
-              Click any pillar to expand and see specific capabilities with KPIs.
-            </p>
-          </div>
-
-          <div className="space-y-3">
-            {pillars.map((pillar) => {
-              const pillarCapabilities = getCapabilitiesByPillar(pillar);
-              const isExpanded = expandedPillar === pillar;
-
-              return (
-                <div key={pillar} className="border border-border rounded-lg overflow-hidden hover:border-accent-blue transition-colors">
-                  <button
-                    onClick={() => togglePillar(pillar)}
-                    className="w-full p-6 flex items-center justify-between bg-bg-secondary hover:bg-bg-hover transition-colors"
-                  >
-                    <div className="flex-1 text-left">
-                      <h3 className="text-lg font-semibold text-primary">{pillar}</h3>
-                      <p className="text-sm text-text-secondary mt-1">
-                        {pillarCounts[pillar]} {pillarCounts[pillar] === 1 ? 'Capability' : 'Capabilities'}
+          {/* Journey Pathways */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {journeyCards.map((card, idx) => (
+              <FadeIn key={card.title} delay={idx * 0.1}>
+                <Link href={card.href}>
+                  <GlassCard className="p-8 h-full group">
+                    <div className="flex flex-col items-center text-center space-y-4">
+                      <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-accent-blue rounded-2xl flex items-center justify-center shadow-glow group-hover:shadow-glow-lg transition-shadow">
+                        <card.icon className="w-8 h-8 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">{card.title}</h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        {card.description}
                       </p>
+                      <div className="flex items-center gap-2 text-primary-600 font-semibold pt-2 group-hover:gap-3 transition-all">
+                        <span>{card.cta}</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
                     </div>
-                    <ChevronDown
-                      className={`w-5 h-5 text-text-secondary transition-transform ${
-                        isExpanded ? 'rotate-180' : ''
-                      }`}
-                    />
-                  </button>
+                  </GlassCard>
+                </Link>
+              </FadeIn>
+            ))}
+          </div>
 
-                  {isExpanded && (
-                    <div className="p-4 bg-bg-tertiary space-y-3">
-                      {pillarCapabilities.map((cap) => (
-                        <Link
-                          key={cap.id}
-                          href={`/capabilities/${cap.id}`}
-                          className="block p-4 bg-bg-primary border border-border rounded-md hover:border-accent-blue hover:shadow-sm transition-all"
-                        >
-                          <div className="flex items-start justify-between mb-2">
-                            <h4 className="font-semibold text-primary hover:text-accent-blue transition-colors">{cap.title}</h4>
-                            <span className="text-accent-blue text-sm">→</span>
-                          </div>
-                          <p className="text-sm text-text-secondary mb-3">{cap.description}</p>
-                          <div className="flex flex-wrap gap-2">
-                            {cap.kpis.slice(0, 3).map((kpi, idx) => (
-                              <span
-                                key={idx}
-                                className="text-xs px-3 py-1 bg-bg-accent-blue text-accent-blue rounded-full font-medium"
-                              >
-                                {kpi.metric}: {kpi.value}
-                              </span>
-                            ))}
-                          </div>
-                        </Link>
-                      ))}
+          {/* Strategic Pillars */}
+          <FadeIn className="space-y-8">
+            <div className="text-center space-y-3">
+              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary-600 to-accent-blue bg-clip-text text-transparent">
+                Our 5 Strategic Pillars
+              </h2>
+              <p className="text-lg text-gray-600">
+                Click any pillar to expand and see specific capabilities with KPIs.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              {pillars.map((pillar, idx) => {
+                const pillarCapabilities = getCapabilitiesByPillar(pillar);
+                const isExpanded = expandedPillar === pillar;
+
+                return (
+                  <FadeIn key={pillar} delay={idx * 0.05}>
+                    <GlassCard hover={false} className="overflow-hidden">
+                      <button
+                        onClick={() => togglePillar(pillar)}
+                        className="w-full p-8 flex items-center justify-between hover:bg-white/30 transition-colors"
+                      >
+                        <div className="flex-1 text-left">
+                          <h3 className="text-2xl font-bold text-gray-900">{pillar}</h3>
+                          <p className="text-sm text-gray-600 mt-2 font-medium">
+                            {pillarCounts[pillar]} {pillarCounts[pillar] === 1 ? 'Capability' : 'Capabilities'}
+                          </p>
+                        </div>
+                        <ChevronDown
+                          className={`w-6 h-6 text-primary-600 transition-transform duration-300 ${
+                            isExpanded ? 'rotate-180' : ''
+                          }`}
+                        />
+                      </button>
+
+                      {isExpanded && (
+                        <div className="px-6 pb-6 space-y-4">
+                          {pillarCapabilities.map((cap) => (
+                            <Link
+                              key={cap.id}
+                              href={`/capabilities/${cap.id}`}
+                            >
+                              <GlassCard className="p-6 bg-white/40">
+                                <div className="flex items-start justify-between mb-3">
+                                  <h4 className="font-bold text-lg text-gray-900 group-hover:text-primary-600 transition-colors">
+                                    {cap.title}
+                                  </h4>
+                                  <ArrowRight className="w-5 h-5 text-primary-600 flex-shrink-0" />
+                                </div>
+                                <p className="text-gray-600 mb-4 text-sm leading-relaxed">{cap.description}</p>
+                                <div className="flex flex-wrap gap-2">
+                                  {cap.kpis.slice(0, 3).map((kpi, idx) => (
+                                    <span
+                                      key={idx}
+                                      className="text-xs px-3 py-1.5 bg-gradient-to-r from-primary-50 to-blue-50 text-primary-700 rounded-full font-semibold border border-primary-200"
+                                    >
+                                      {kpi.metric}: {kpi.value}
+                                    </span>
+                                  ))}
+                                </div>
+                              </GlassCard>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </GlassCard>
+                  </FadeIn>
+                );
+              })}
+            </div>
+          </FadeIn>
+
+          {/* Performance Highlights */}
+          <FadeIn className="space-y-8 pt-8">
+            <h2 className="text-4xl font-bold text-center bg-gradient-to-r from-primary-600 to-accent-purple bg-clip-text text-transparent">
+              Performance Highlights
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              {performanceMetrics.map((metric, idx) => (
+                <FadeIn key={metric.label} delay={idx * 0.05}>
+                  <GlassCard className="p-6 text-center">
+                    <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary-600 to-accent-blue bg-clip-text text-transparent">
+                      <CountUp value={metric.value} />
                     </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
+                    <div className="text-sm text-gray-600 mt-2 font-medium">{metric.label}</div>
+                  </GlassCard>
+                </FadeIn>
+              ))}
+            </div>
+          </FadeIn>
 
-        {/* Performance Highlights */}
-        <div className="space-y-6 pt-8 border-t border-border">
-          <h2 className="text-2xl font-semibold text-center">Performance Highlights</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-accent-blue">48K units/hr</div>
-              <div className="text-sm text-text-secondary mt-1">Peak Velocity</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-accent-blue">5-8x</div>
-              <div className="text-sm text-text-secondary mt-1">ROAS Range</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-accent-blue">$526K</div>
-              <div className="text-sm text-text-secondary mt-1">Monthly Revenue Recovery</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-accent-blue">800+</div>
-              <div className="text-sm text-text-secondary mt-1">ASINs Launched</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-accent-blue">56</div>
-              <div className="text-sm text-text-secondary mt-1">Sellers Removed</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-accent-blue">&lt;0.01%</div>
-              <div className="text-sm text-text-secondary mt-1">Defect Rate</div>
-            </div>
+          {/* Footer */}
+          <div className="text-center text-gray-500 text-sm py-8 space-y-1">
+            <p className="font-medium">Next.js Production Build • Premium Design System</p>
+            <p>{capabilities.length} Capabilities • 5 Pillars • TypeScript • Framer Motion</p>
           </div>
-        </div>
-
-        {/* Footer Note */}
-        <div className="text-center text-text-tertiary text-sm py-8">
-          <p>Next.js Production Build • Phase 2: Data Migration Complete</p>
-          <p className="mt-1">{capabilities.length} Capabilities • 5 Pillars • TypeScript</p>
         </div>
       </div>
-    </div>
+    </>
   );
 }

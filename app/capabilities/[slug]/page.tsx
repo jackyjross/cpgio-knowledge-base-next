@@ -3,6 +3,11 @@ import Link from 'next/link';
 import { capabilities, getCapabilityById } from '@/lib/data/capabilities';
 import { ArrowLeft, CheckCircle2 } from 'lucide-react';
 import type { Metadata } from 'next';
+import { MeshGradient } from '@/app/components/ui/MeshGradient';
+import { GlassCard } from '@/app/components/ui/GlassCard';
+import { FadeIn } from '@/app/components/animations/FadeIn';
+import { CountUp } from '@/app/components/animations/CountUp';
+import { CopyBox } from '@/app/components/ui/CopyBox';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -44,127 +49,176 @@ export default async function CapabilityDetailPage({ params }: Props) {
     notFound();
   }
 
+  // Generate RFP-ready content
+  const rfpContent = `${capability.title}
+
+${capability.description}
+
+Key Points:
+${capability.keyPoints.map((point, idx) => `${idx + 1}. ${point}`).join('\n')}
+
+Service-Level KPIs:
+${capability.kpis.map(kpi => `• ${kpi.metric}: ${kpi.value} - ${kpi.description}`).join('\n')}
+
+Related Case Studies: ${capability.relatedCaseStudies.join(', ')}`;
+
   return (
-    <div className="min-h-screen p-8">
-      <div className="max-w-4xl mx-auto space-y-8">
-        {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-sm text-text-secondary">
-          <Link href="/" className="hover:text-accent-blue transition-colors">
-            Home
-          </Link>
-          <span>›</span>
-          <Link href="/capabilities" className="hover:text-accent-blue transition-colors">
-            Capabilities
-          </Link>
-          <span>›</span>
-          <span className="text-text-primary">{capability.title}</span>
-        </div>
+    <>
+      <MeshGradient />
 
-        {/* Back Button */}
-        <Link
-          href="/capabilities"
-          className="inline-flex items-center gap-2 text-accent-blue hover:text-accent-blue/80 transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span className="text-sm font-medium">Back to Capabilities</span>
-        </Link>
-
-        {/* Header */}
-        <div className="space-y-4">
-          <div className="inline-block px-3 py-1 bg-bg-accent-blue text-accent-blue text-sm font-medium rounded-full">
-            {capability.category}
-          </div>
-          <h1 className="text-4xl font-bold text-primary">{capability.title}</h1>
-          <p className="text-xl text-text-secondary">{capability.description}</p>
-
-          <div className="flex items-center gap-2 text-sm text-text-tertiary">
-            <span className="font-medium">Pillar:</span>
-            <span>{capability.pillar}</span>
-          </div>
-        </div>
-
-        {/* Key Points */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-primary">Key Points</h2>
-          <div className="space-y-3">
-            {capability.keyPoints.map((point, idx) => (
-              <div key={idx} className="flex gap-3">
-                <CheckCircle2 className="w-5 h-5 text-accent-blue flex-shrink-0 mt-0.5" />
-                <p className="text-text-secondary">{point}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Service-Level KPIs */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-primary">Service-Level KPIs</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {capability.kpis.map((kpi, idx) => (
-              <div
-                key={idx}
-                className="p-6 border border-border rounded-lg bg-bg-secondary"
-              >
-                <div className="text-3xl font-bold text-accent-blue mb-2">
-                  {kpi.value}
-                </div>
-                <div className="text-sm font-semibold text-primary mb-1">
-                  {kpi.metric}
-                </div>
-                <div className="text-sm text-text-secondary">
-                  {kpi.description}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Related Case Studies */}
-        {capability.relatedCaseStudies.length > 0 && (
-          <div className="space-y-4 pt-8 border-t border-border">
-            <h2 className="text-2xl font-semibold text-primary">Related Case Studies</h2>
-            <div className="flex flex-wrap gap-2">
-              {capability.relatedCaseStudies.map((caseStudyId) => (
-                <div
-                  key={caseStudyId}
-                  className="px-4 py-2 bg-bg-accent-teal text-accent-teal rounded-lg text-sm font-medium"
-                >
-                  {caseStudyId.split('-').map(word =>
-                    word.charAt(0).toUpperCase() + word.slice(1)
-                  ).join(' ')}
-                </div>
-              ))}
+      <div className="min-h-screen p-8 relative">
+        <div className="max-w-5xl mx-auto space-y-12">
+          {/* Breadcrumb */}
+          <FadeIn>
+            <div className="flex items-center gap-2 text-sm text-gray-600 font-medium">
+              <Link href="/" className="hover:text-primary-600 transition-colors">
+                Home
+              </Link>
+              <span>›</span>
+              <Link href="/capabilities" className="hover:text-primary-600 transition-colors">
+                Capabilities
+              </Link>
+              <span>›</span>
+              <span className="text-gray-900">{capability.title}</span>
             </div>
-            <p className="text-sm text-text-tertiary">
-              Case studies coming soon with detailed results and metrics.
-            </p>
-          </div>
-        )}
+          </FadeIn>
 
-        {/* CTA Section */}
-        <div className="p-8 bg-bg-accent-blue border border-accent-blue rounded-lg text-center space-y-4">
-          <h3 className="text-xl font-semibold text-primary">
-            Want to learn more about {capability.title}?
-          </h3>
-          <p className="text-text-secondary">
-            Contact our team to discuss how this capability can drive results for your brand.
-          </p>
-          <div className="flex gap-4 justify-center">
-            <a
-              href="mailto:sales@cpgio.com"
-              className="px-6 py-3 bg-accent-blue text-white rounded-lg font-medium hover:bg-accent-blue/90 transition-colors"
-            >
-              Contact Sales
-            </a>
+          {/* Back Button */}
+          <FadeIn delay={0.1}>
             <Link
               href="/capabilities"
-              className="px-6 py-3 border border-border rounded-lg font-medium hover:border-accent-blue transition-colors"
+              className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 transition-colors font-medium"
             >
-              Explore More Capabilities
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back to Capabilities</span>
             </Link>
-          </div>
+          </FadeIn>
+
+          {/* Header */}
+          <FadeIn delay={0.2}>
+            <GlassCard className="p-10">
+              <div className="space-y-6">
+                <div className="inline-block px-4 py-2 bg-gradient-to-r from-primary-50 to-blue-50 text-primary-700 text-sm font-bold rounded-full border border-primary-200">
+                  {capability.category}
+                </div>
+                <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary-600 via-accent-blue to-accent-purple bg-clip-text text-transparent leading-tight">
+                  {capability.title}
+                </h1>
+                <p className="text-2xl text-gray-700 leading-relaxed font-medium">{capability.description}</p>
+
+                <div className="flex items-center gap-3 text-sm text-gray-600 pt-4">
+                  <span className="font-semibold text-gray-900">Pillar:</span>
+                  <span className="px-3 py-1 bg-white/50 rounded-full font-medium">{capability.pillar}</span>
+                </div>
+              </div>
+            </GlassCard>
+          </FadeIn>
+
+          {/* Key Points */}
+          <FadeIn delay={0.3}>
+            <GlassCard className="p-10">
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">Key Points</h2>
+              <div className="space-y-5">
+                {capability.keyPoints.map((point, idx) => (
+                  <div key={idx} className="flex gap-4 group">
+                    <CheckCircle2 className="w-6 h-6 text-primary-600 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                    <p className="text-gray-700 text-lg leading-relaxed">{point}</p>
+                  </div>
+                ))}
+              </div>
+            </GlassCard>
+          </FadeIn>
+
+          {/* Service-Level KPIs */}
+          <FadeIn delay={0.4}>
+            <div className="space-y-6">
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-primary-600 to-accent-blue bg-clip-text text-transparent">
+                Service-Level KPIs
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {capability.kpis.map((kpi, idx) => (
+                  <FadeIn key={idx} delay={0.45 + idx * 0.05}>
+                    <GlassCard className="p-8 group hover:scale-105 transition-transform">
+                      <div className="text-5xl font-bold bg-gradient-to-r from-primary-600 to-accent-blue bg-clip-text text-transparent mb-4">
+                        <CountUp value={kpi.value} />
+                      </div>
+                      <div className="text-lg font-bold text-gray-900 mb-2">
+                        {kpi.metric}
+                      </div>
+                      <div className="text-sm text-gray-600 leading-relaxed">
+                        {kpi.description}
+                      </div>
+                    </GlassCard>
+                  </FadeIn>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* RFP Copy Box */}
+          <FadeIn delay={0.6}>
+            <div className="space-y-4">
+              <h2 className="text-3xl font-bold text-gray-900">RFP Response Copy</h2>
+              <p className="text-gray-600">
+                Pre-formatted response ready to paste into your RFP or proposal.
+              </p>
+              <CopyBox content={rfpContent} title={`${capability.title} - RFP Response`} />
+            </div>
+          </FadeIn>
+
+          {/* Related Case Studies */}
+          {capability.relatedCaseStudies.length > 0 && (
+            <FadeIn delay={0.7}>
+              <GlassCard className="p-10">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">Related Case Studies</h2>
+                <div className="flex flex-wrap gap-3 mb-4">
+                  {capability.relatedCaseStudies.map((caseStudyId) => (
+                    <div
+                      key={caseStudyId}
+                      className="px-5 py-3 bg-gradient-to-r from-accent-teal/10 to-accent-blue/10 text-accent-teal rounded-xl text-sm font-bold border border-accent-teal/20 hover:scale-105 transition-transform"
+                    >
+                      {caseStudyId.split('-').map(word =>
+                        word.charAt(0).toUpperCase() + word.slice(1)
+                      ).join(' ')}
+                    </div>
+                  ))}
+                </div>
+                <p className="text-sm text-gray-600">
+                  Case studies coming soon with detailed results and metrics.
+                </p>
+              </GlassCard>
+            </FadeIn>
+          )}
+
+          {/* CTA Section */}
+          <FadeIn delay={0.8}>
+            <GlassCard className="p-12 text-center">
+              <div className="space-y-6 max-w-2xl mx-auto">
+                <h3 className="text-3xl font-bold bg-gradient-to-r from-primary-600 to-accent-purple bg-clip-text text-transparent">
+                  Want to learn more about {capability.title}?
+                </h3>
+                <p className="text-gray-600 text-lg">
+                  Contact our team to discuss how this capability can drive results for your brand.
+                </p>
+                <div className="flex gap-4 justify-center pt-4">
+                  <a
+                    href="mailto:sales@cpgio.com"
+                    className="px-8 py-4 bg-gradient-to-r from-primary-600 to-accent-blue text-white rounded-xl font-bold text-lg hover:shadow-glow-lg hover:scale-105 transition-all"
+                  >
+                    Contact Sales
+                  </a>
+                  <Link
+                    href="/capabilities"
+                    className="px-8 py-4 bg-white/50 backdrop-blur-sm border-2 border-primary-200 rounded-xl font-bold text-lg text-primary-700 hover:bg-white/70 hover:scale-105 transition-all"
+                  >
+                    Explore More Capabilities
+                  </Link>
+                </div>
+              </div>
+            </GlassCard>
+          </FadeIn>
         </div>
       </div>
-    </div>
+    </>
   );
 }
