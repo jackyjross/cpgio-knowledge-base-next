@@ -1,12 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // For static site generation (GitHub Pages compatible)
+  // Vercel handles Next.js natively - no static export needed
   images: {
-    unoptimized: true, // Required for static export
+    unoptimized: true, // Can be removed if using Vercel's image optimization
   },
-  // Uncomment below if deploying to a subdirectory
-  // basePath: '/cpgio-knowledge-base',
-  // assetPrefix: '/cpgio-knowledge-base/',
 };
 
 export default nextConfig;
