@@ -1,9 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Vercel handles Next.js natively - no static export needed
+  // Use static export for GitHub Pages, dynamic for Vercel
+  // GitHub Actions sets GITHUB_ACTIONS=true
+  output: process.env.GITHUB_ACTIONS ? 'export' : undefined,
+
   images: {
-    unoptimized: true, // Can be removed if using Vercel's image optimization
+    unoptimized: true,
   },
+
+  // GitHub Pages specific config (only when exporting)
+  ...(process.env.GITHUB_ACTIONS && {
+    basePath: '',
+  }),
 };
 
 export default nextConfig;
