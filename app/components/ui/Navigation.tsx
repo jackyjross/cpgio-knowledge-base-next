@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Home, Layers, FileText, Menu, X } from 'lucide-react';
+import { Home, Layers, FileText, Menu, X, Briefcase } from 'lucide-react';
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,6 +22,7 @@ export function Navigation() {
   const navItems = [
     { href: '/', label: 'Home', icon: Home },
     { href: '/capabilities', label: 'Capabilities', icon: Layers },
+    { href: '/case-studies', label: 'Case Studies', icon: Briefcase },
     { href: '/rfp-center', label: 'RFP Center', icon: FileText },
   ];
 
