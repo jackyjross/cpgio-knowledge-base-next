@@ -14,16 +14,18 @@ export function GlassCard({ children, className = '', hover = true, onClick }: G
   return (
     <motion.div
       className={`
-        bg-white/70 backdrop-blur-md
-        border border-white/20
+        bg-white/5 backdrop-blur-md
+        border border-white/10
         rounded-2xl
         shadow-glass
+        p-6
         ${hover ? 'cursor-pointer' : ''}
         ${className}
       `}
       whileHover={hover ? {
         y: -5,
-        boxShadow: '0 12px 40px 0 rgba(31, 38, 135, 0.12)',
+        backgroundColor: 'rgba(255, 255, 255, 0.08)',
+        borderColor: 'rgba(59, 130, 246, 0.3)',
       } : undefined}
       transition={{
         type: 'spring',

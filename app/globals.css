@@ -85,8 +85,23 @@ p {
   background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
+.bg-white\/70 {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
 .bg-gradient-to-r.from-primary-50 {
   background-image: linear-gradient(to right, rgba(59, 130, 246, 0.1), rgba(20, 184, 166, 0.1)) !important;
+}
+
+/* Card text colors - ensure readability on dark cards */
+.bg-white\/5 p,
+.bg-white\/5 h1,
+.bg-white\/5 h2,
+.bg-white\/5 h3,
+.bg-white\/5 h4,
+.bg-white\/5 h5,
+.bg-white\/5 h6 {
+  color: #f1f5f9 !important;
 }
 
 /* Border overrides */
