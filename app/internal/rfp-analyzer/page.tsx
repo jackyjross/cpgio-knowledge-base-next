@@ -127,7 +127,7 @@ export default function RFPAnalyzerPage() {
                 <h1 className="text-4xl font-bold text-slate-900">
                   RFP Analyzer
                 </h1>
-                <p className="text-slate-600">
+                <p className="text-slate-700">
                   Upload RFP documents and automatically generate responses
                 </p>
               </div>
@@ -148,10 +148,10 @@ export default function RFPAnalyzerPage() {
                   <label className="block w-full">
                     <div className="border-2 border-dashed border-slate-300 rounded-lg p-8 text-center hover:border-blue-500 transition-colors cursor-pointer">
                       <Upload className="w-8 h-8 text-slate-400 mx-auto mb-3" />
-                      <div className="text-sm text-slate-600 mb-2">
+                      <div className="text-sm text-slate-700 mb-2">
                         Drop files here or click to upload
                       </div>
-                      <div className="text-xs text-slate-500">
+                      <div className="text-xs text-slate-600">
                         Supports PDF, DOCX, TXT, Excel
                       </div>
                       <input
@@ -203,10 +203,10 @@ export default function RFPAnalyzerPage() {
                 )}
 
                 <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                  <div className="text-xs font-medium text-blue-900 mb-2">
+                  <div className="text-xs font-medium text-slate-900 mb-2">
                     How it works:
                   </div>
-                  <ul className="text-xs text-blue-800 space-y-1">
+                  <ul className="text-xs text-slate-800 space-y-1">
                     <li>• Extracts questions from RFP</li>
                     <li>• Matches with knowledge base</li>
                     <li>• Generates tailored responses</li>
@@ -226,7 +226,7 @@ export default function RFPAnalyzerPage() {
                     Analyzed Questions & Responses
                   </h3>
                   {analyzedQuestions.length > 0 && (
-                    <div className="text-sm text-slate-600">
+                    <div className="text-sm text-slate-700">
                       {analyzedQuestions.length} questions found
                     </div>
                   )}
@@ -235,7 +235,7 @@ export default function RFPAnalyzerPage() {
                 {analyzedQuestions.length === 0 ? (
                   <div className="text-center py-12">
                     <FileText className="w-16 h-16 text-slate-300 mx-auto mb-4" />
-                    <p className="text-slate-500">
+                    <p className="text-slate-600">
                       Upload an RFP document to see analyzed questions and suggested responses
                     </p>
                   </div>
@@ -268,7 +268,7 @@ export default function RFPAnalyzerPage() {
                                 {item.confidence} confidence
                               </span>
                               {item.matchedAnswer && (
-                                <span className="text-xs text-slate-500">
+                                <span className="text-xs text-slate-600">
                                   Matched with knowledge base
                                 </span>
                               )}
@@ -287,7 +287,7 @@ export default function RFPAnalyzerPage() {
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => handleCopy(item.suggestedResponse, index)}
-                            className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded text-xs font-medium transition-colors flex items-center gap-1"
+                            className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded text-xs font-medium transition-colors flex items-center gap-1"
                           >
                             {copiedIndex === index ? (
                               <>

@@ -145,7 +145,7 @@ export default function AIQAPage() {
                 <h1 className="text-4xl font-bold text-slate-900">
                   AI Q&A Assistant
                 </h1>
-                <p className="text-slate-600">
+                <p className="text-slate-700">
                   Ask questions about CPGIO capabilities and get instant answers
                 </p>
               </div>
@@ -183,11 +183,11 @@ export default function AIQAPage() {
 
                       {message.sources && message.sources.length > 0 && (
                         <div className="mt-3 pt-3 border-t border-slate-300">
-                          <div className="text-xs text-slate-600 font-medium mb-1">
+                          <div className="text-xs text-slate-700 font-medium mb-1">
                             Sources:
                           </div>
                           {message.sources.map((source, idx) => (
-                            <div key={idx} className="text-xs text-slate-500">
+                            <div key={idx} className="text-xs text-slate-600">
                               {source}
                             </div>
                           ))}
@@ -198,7 +198,7 @@ export default function AIQAPage() {
                     {message.role === "assistant" && (
                       <button
                         onClick={() => handleCopy(message.content, index)}
-                        className="mt-2 text-xs text-slate-600 hover:text-slate-900 flex items-center gap-1"
+                        className="mt-2 text-xs text-slate-700 hover:text-slate-900 flex items-center gap-1"
                       >
                         {copiedIndex === index ? (
                           <>
@@ -247,7 +247,7 @@ export default function AIQAPage() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && handleSend()}
                 placeholder="Ask a question..."
-                className="flex-1 px-4 py-3 bg-slate-100 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="flex-1 px-4 py-3 bg-slate-100 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <button
                 onClick={handleSend}
@@ -276,7 +276,7 @@ export default function AIQAPage() {
                 <button
                   key={index}
                   onClick={() => setInput(question)}
-                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm transition-colors"
+                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-lg text-sm transition-colors"
                 >
                   {question}
                 </button>

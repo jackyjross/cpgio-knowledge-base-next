@@ -106,7 +106,7 @@ export default function InternalDashboard() {
                 <h1 className="text-4xl font-bold text-slate-900">
                   Internal Dashboard
                 </h1>
-                <p className="text-slate-600">
+                <p className="text-lg text-slate-600 mt-1">
                   CPGIO Knowledge Base Management & Tools
                 </p>
               </div>
@@ -125,15 +125,20 @@ export default function InternalDashboard() {
                   className="cursor-pointer"
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <div className={`w-10 h-10 rounded-lg bg-${stat.color}-100 flex items-center justify-center`}>
-                      <Icon className={`w-5 h-5 text-${stat.color}-600`} />
+                    <div className={`w-12 h-12 rounded-xl ${
+                      stat.color === 'blue' ? 'bg-blue-500' :
+                      stat.color === 'teal' ? 'bg-teal-500' :
+                      stat.color === 'orange' ? 'bg-orange-500' :
+                      'bg-green-500'
+                    } flex items-center justify-center shadow-lg`}>
+                      <Icon className="w-6 h-6 text-white" />
                     </div>
-                    <ArrowRight className="w-4 h-4 text-slate-400" />
+                    <ArrowRight className="w-5 h-5 text-slate-400" />
                   </div>
-                  <div className="text-3xl font-bold text-slate-900 mb-1">
+                  <div className="text-4xl font-bold text-slate-900 mb-2">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-slate-600">
+                  <div className="text-sm font-medium text-slate-600">
                     {stat.label}
                   </div>
                 </GlassCard>
@@ -145,9 +150,11 @@ export default function InternalDashboard() {
         {/* Tools Section */}
         <FadeIn delay={0.3}>
           <div className="mb-12">
-            <div className="flex items-center gap-2 mb-6">
-              <Sparkles className="w-6 h-6 text-blue-600" />
-              <h2 className="text-2xl font-bold text-slate-900">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                <Sparkles className="w-5 h-5 text-white" />
+              </div>
+              <h2 className="text-3xl font-bold text-slate-900">
                 Internal Tools
               </h2>
             </div>
@@ -161,33 +168,39 @@ export default function InternalDashboard() {
                       onClick={() => router.push(tool.href)}
                       className="cursor-pointer h-full"
                     >
-                      <div className="flex items-start gap-4 mb-4">
-                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br from-${tool.color}-500 to-${tool.color}-600 flex items-center justify-center flex-shrink-0`}>
-                          <Icon className="w-6 h-6 text-white" />
+                      <div className="flex items-start gap-4 mb-6">
+                        <div className={`w-14 h-14 rounded-xl shadow-lg flex items-center justify-center flex-shrink-0 ${
+                          tool.color === 'blue' ? 'bg-gradient-to-br from-blue-500 to-blue-600' :
+                          tool.color === 'teal' ? 'bg-gradient-to-br from-teal-500 to-teal-600' :
+                          'bg-gradient-to-br from-purple-500 to-purple-600'
+                        }`}>
+                          <Icon className="w-7 h-7 text-white" />
                         </div>
                         <div className="flex-1">
                           <h3 className="text-xl font-bold text-slate-900 mb-2">
                             {tool.title}
                           </h3>
-                          <p className="text-sm text-slate-600 mb-4">
+                          <p className="text-base text-slate-600">
                             {tool.description}
                           </p>
                         </div>
                       </div>
 
-                      <div className="space-y-2">
+                      <div className="space-y-3 mb-6">
                         {tool.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-center gap-2 text-sm text-slate-600">
-                            <CheckCircle2 className="w-4 h-4 text-green-600" />
+                          <div key={idx} className="flex items-center gap-3 text-sm text-slate-700">
+                            <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
+                            </div>
                             <span>{feature}</span>
                           </div>
                         ))}
                       </div>
 
-                      <div className="mt-4 pt-4 border-t border-slate-200">
-                        <div className="flex items-center text-blue-600 font-medium text-sm">
-                          Open Tool
-                          <ArrowRight className="w-4 h-4 ml-2" />
+                      <div className="mt-auto pt-4 border-t border-slate-200">
+                        <div className="flex items-center justify-between text-blue-600 font-semibold text-sm">
+                          <span>Open Tool</span>
+                          <ArrowRight className="w-4 h-4" />
                         </div>
                       </div>
                     </GlassCard>
@@ -204,8 +217,10 @@ export default function InternalDashboard() {
             {/* Activity Feed */}
             <div className="lg:col-span-2">
               <GlassCard>
-                <div className="flex items-center gap-2 mb-6">
-                  <Clock className="w-5 h-5 text-slate-600" />
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center">
+                    <Clock className="w-5 h-5 text-slate-700" />
+                  </div>
                   <h3 className="text-xl font-bold text-slate-900">
                     Recent Activity
                   </h3>
@@ -219,11 +234,11 @@ export default function InternalDashboard() {
                         <div className="text-sm font-medium text-slate-900">
                           {activity.action}
                         </div>
-                        <div className="text-sm text-slate-600">
+                        <div className="text-sm text-slate-700">
                           {activity.item}
                         </div>
                       </div>
-                      <div className="text-xs text-slate-500">
+                      <div className="text-xs text-slate-600">
                         {activity.time}
                       </div>
                     </div>

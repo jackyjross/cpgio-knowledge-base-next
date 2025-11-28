@@ -50,13 +50,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Force dark theme text colors */
+/* Default text colors - can be overridden by Tailwind classes */
 h1, h2, h3, h4, h5, h6 {
-  color: #f1f5f9;
+  color: inherit;
 }
 
 p {
-  color: #cbd5e1;
+  color: inherit;
 }
 
 /* Override Tailwind gray classes to use white/slate for dark theme */
@@ -80,7 +80,7 @@ p {
   color: #475569 !important;
 }
 
-/* Background overrides for dark theme */
+/* Background overrides for dark theme - only override very transparent whites */
 .bg-white\/50 {
   background-color: rgba(255, 255, 255, 0.1) !important;
 }
@@ -89,11 +89,14 @@ p {
   background-color: rgba(255, 255, 255, 0.05) !important;
 }
 
+/* Keep white/90 as-is for GlassCard */
+/* .bg-white\/90 is not overridden - it stays at rgba(255, 255, 255, 0.9) */
+
 .bg-gradient-to-r.from-primary-50 {
   background-image: linear-gradient(to right, rgba(59, 130, 246, 0.1), rgba(20, 184, 166, 0.1)) !important;
 }
 
-/* Card text colors - ensure readability on dark cards */
+/* Card text colors - only apply to very dark backgrounds */
 .bg-white\/5 p,
 .bg-white\/5 h1,
 .bg-white\/5 h2,
@@ -102,6 +105,17 @@ p {
 .bg-white\/5 h5,
 .bg-white\/5 h6 {
   color: #f1f5f9 !important;
+}
+
+/* Light cards (bg-white/90) should use dark text from Tailwind classes */
+.bg-white\/90 h1,
+.bg-white\/90 h2,
+.bg-white\/90 h3,
+.bg-white\/90 h4,
+.bg-white\/90 h5,
+.bg-white\/90 h6,
+.bg-white\/90 p {
+  color: inherit !important;
 }
 
 /* Border overrides */
