@@ -70,16 +70,16 @@ Related Case Studies: ${capability.relatedCaseStudies.join(', ')}`;
         <div className="max-w-5xl mx-auto space-y-12">
           {/* Breadcrumb */}
           <FadeIn>
-            <div className="flex items-center gap-2 text-sm text-gray-600 font-medium">
-              <Link href="/" className="hover:text-primary-600 transition-colors">
+            <div className="flex items-center gap-2 text-sm text-slate-600 font-medium">
+              <Link href="/" className="hover:text-blue-600 transition-colors">
                 Home
               </Link>
               <span>›</span>
-              <Link href="/capabilities" className="hover:text-primary-600 transition-colors">
+              <Link href="/capabilities" className="hover:text-blue-600 transition-colors">
                 Capabilities
               </Link>
               <span>›</span>
-              <span className="text-gray-900">{capability.title}</span>
+              <span className="text-slate-900">{capability.title}</span>
             </div>
           </FadeIn>
 
@@ -87,7 +87,7 @@ Related Case Studies: ${capability.relatedCaseStudies.join(', ')}`;
           <FadeIn delay={0.1}>
             <Link
               href="/capabilities"
-              className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 transition-colors font-medium"
+              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors font-medium"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Capabilities</span>
@@ -98,17 +98,17 @@ Related Case Studies: ${capability.relatedCaseStudies.join(', ')}`;
           <FadeIn delay={0.2}>
             <GlassCard className="p-10">
               <div className="space-y-6">
-                <div className="inline-block px-4 py-2 bg-gradient-to-r from-primary-50 to-blue-50 text-primary-700 text-sm font-bold rounded-full border border-primary-200">
+                <div className="inline-block px-4 py-2 bg-blue-100 text-blue-700 text-sm font-bold rounded-full border border-blue-200">
                   {capability.category}
                 </div>
-                <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary-600 via-accent-blue to-accent-purple bg-clip-text text-transparent leading-tight">
+                <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 bg-clip-text text-transparent leading-tight">
                   {capability.title}
                 </h1>
-                <p className="text-2xl text-gray-700 leading-relaxed font-medium">{capability.description}</p>
+                <p className="text-2xl text-slate-700 leading-relaxed font-medium">{capability.description}</p>
 
-                <div className="flex items-center gap-3 text-sm text-gray-600 pt-4">
-                  <span className="font-semibold text-gray-900">Pillar:</span>
-                  <span className="px-3 py-1 bg-white/50 rounded-full font-medium">{capability.pillar}</span>
+                <div className="flex items-center gap-3 text-sm text-slate-600 pt-4">
+                  <span className="font-semibold text-slate-900">Pillar:</span>
+                  <span className="px-3 py-1 bg-slate-100 rounded-full font-medium">{capability.pillar}</span>
                 </div>
               </div>
             </GlassCard>
@@ -117,12 +117,12 @@ Related Case Studies: ${capability.relatedCaseStudies.join(', ')}`;
           {/* Key Points */}
           <FadeIn delay={0.3}>
             <GlassCard className="p-10">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Key Points</h2>
+              <h2 className="text-3xl font-bold text-slate-900 mb-8">Key Points</h2>
               <div className="space-y-5">
                 {capability.keyPoints.map((point, idx) => (
                   <div key={idx} className="flex gap-4 group">
-                    <CheckCircle2 className="w-6 h-6 text-primary-600 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-                    <p className="text-gray-700 text-lg leading-relaxed">{point}</p>
+                    <CheckCircle2 className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                    <p className="text-slate-700 text-lg leading-relaxed">{point}</p>
                   </div>
                 ))}
               </div>
@@ -132,20 +132,20 @@ Related Case Studies: ${capability.relatedCaseStudies.join(', ')}`;
           {/* Service-Level KPIs */}
           <FadeIn delay={0.4}>
             <div className="space-y-6">
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-primary-600 to-accent-blue bg-clip-text text-transparent">
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
                 Service-Level KPIs
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {capability.kpis.map((kpi, idx) => (
                   <FadeIn key={idx} delay={0.45 + idx * 0.05}>
                     <GlassCard className="p-8 group hover:scale-105 transition-transform">
-                      <div className="text-5xl font-bold bg-gradient-to-r from-primary-600 to-accent-blue bg-clip-text text-transparent mb-4">
+                      <div className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent mb-4">
                         <CountUp value={kpi.value} />
                       </div>
-                      <div className="text-lg font-bold text-gray-900 mb-2">
+                      <div className="text-lg font-bold text-slate-900 mb-2">
                         {kpi.metric}
                       </div>
-                      <div className="text-sm text-gray-600 leading-relaxed">
+                      <div className="text-sm text-slate-600 leading-relaxed">
                         {kpi.description}
                       </div>
                     </GlassCard>
@@ -158,8 +158,8 @@ Related Case Studies: ${capability.relatedCaseStudies.join(', ')}`;
           {/* RFP Copy Box */}
           <FadeIn delay={0.6}>
             <div className="space-y-4">
-              <h2 className="text-3xl font-bold text-gray-900">RFP Response Copy</h2>
-              <p className="text-gray-600">
+              <h2 className="text-3xl font-bold text-slate-900">RFP Response Copy</h2>
+              <p className="text-slate-600">
                 Pre-formatted response ready to paste into your RFP or proposal.
               </p>
               <CopyBox content={rfpContent} title={`${capability.title} - RFP Response`} />
@@ -170,7 +170,7 @@ Related Case Studies: ${capability.relatedCaseStudies.join(', ')}`;
           {capability.relatedCaseStudies.length > 0 && (
             <FadeIn delay={0.7}>
               <GlassCard className="p-10">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Related Case Studies</h2>
+                <h2 className="text-3xl font-bold text-slate-900 mb-6">Related Case Studies</h2>
                 <div className="flex flex-wrap gap-3 mb-4">
                   {capability.relatedCaseStudies.map((caseStudyId) => (
                     <div
