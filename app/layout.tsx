@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
-import { Navigation } from "./components/ui/Navigation";
 import "./globals.css";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -44,10 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${plusJakarta.variable} font-sans antialiased`}>
-        <Navigation />
-        <div className="pt-20">
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );
