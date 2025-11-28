@@ -62,7 +62,7 @@ export default async function CaseStudyDetailPage({ params }: Props) {
         <FadeIn>
           <Link
             href="/case-studies"
-            className="inline-flex items-center text-white/60 hover:text-white transition-colors mb-8"
+            className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors mb-8"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Case Studies
@@ -77,10 +77,10 @@ export default async function CaseStudyDetailPage({ params }: Props) {
                 {caseStudy.category}
               </span>
             </div>
-            <h1 className="text-5xl font-bold text-white mb-4">
+            <h1 className="text-5xl font-bold text-gray-900 mb-4">
               {caseStudy.brand}
             </h1>
-            <p className="text-2xl text-white/70">
+            <p className="text-2xl text-gray-700">
               {caseStudy.challenge}
             </p>
           </div>
@@ -92,10 +92,10 @@ export default async function CaseStudyDetailPage({ params }: Props) {
             {/* Challenge */}
             <FadeIn delay={0.2}>
               <GlassCard>
-                <h2 className="text-2xl font-bold text-white mb-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">
                   The Challenge
                 </h2>
-                <p className="text-white/70 text-lg leading-relaxed">
+                <p className="text-gray-700 text-lg leading-relaxed">
                   {caseStudy.challenge}
                 </p>
               </GlassCard>
@@ -104,14 +104,14 @@ export default async function CaseStudyDetailPage({ params }: Props) {
             {/* Execution */}
             <FadeIn delay={0.3}>
               <GlassCard>
-                <h2 className="text-2xl font-bold text-white mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">
                   How We Delivered
                 </h2>
                 <div className="space-y-4">
                   {caseStudy.execution.map((item, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-[var(--color-accent-teal)] flex-shrink-0 mt-0.5" />
-                      <p className="text-white/80 leading-relaxed">{item}</p>
+                      <p className="text-gray-700 leading-relaxed">{item}</p>
                     </div>
                   ))}
                 </div>
@@ -123,7 +123,7 @@ export default async function CaseStudyDetailPage({ params }: Props) {
               <GlassCard>
                 <div className="flex items-center gap-2 mb-6">
                   <TrendingUp className="w-6 h-6 text-[var(--color-accent-orange)]" />
-                  <h2 className="text-2xl font-bold text-white">
+                  <h2 className="text-2xl font-bold text-gray-900">
                     Results
                   </h2>
                 </div>
@@ -133,7 +133,7 @@ export default async function CaseStudyDetailPage({ params }: Props) {
                       key={index}
                       className="p-4 rounded-lg bg-white/5 border border-white/10"
                     >
-                      <div className="text-sm text-white/60 mb-2">{key}</div>
+                      <div className="text-sm text-gray-600 mb-2">{key}</div>
                       <div className="text-2xl font-bold text-[var(--color-accent-teal)]">
                         {value}
                       </div>
@@ -150,7 +150,7 @@ export default async function CaseStudyDetailPage({ params }: Props) {
             {relatedCapabilities.length > 0 && (
               <FadeIn delay={0.5}>
                 <GlassCard>
-                  <h3 className="text-xl font-bold text-white mb-4">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">
                     Related Capabilities
                   </h3>
                   <div className="space-y-3">
@@ -160,10 +160,10 @@ export default async function CaseStudyDetailPage({ params }: Props) {
                         href={`/capabilities/${capability?.id}`}
                         className="block p-3 rounded-lg bg-white/5 border border-white/10 hover:border-[var(--color-accent-blue)]/50 transition-colors"
                       >
-                        <div className="text-sm text-white font-medium">
+                        <div className="text-sm text-gray-900 font-medium">
                           {capability?.title}
                         </div>
-                        <div className="text-xs text-white/60 mt-1">
+                        <div className="text-xs text-gray-600 mt-1">
                           {capability?.category}
                         </div>
                       </Link>
@@ -176,10 +176,10 @@ export default async function CaseStudyDetailPage({ params }: Props) {
             {/* CTA */}
             <FadeIn delay={0.6}>
               <GlassCard className="bg-gradient-to-br from-[var(--color-accent-blue)]/10 to-[var(--color-accent-teal)]/10 border-[var(--color-accent-blue)]/30">
-                <h3 className="text-xl font-bold text-white mb-3">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
                   Ready to achieve similar results?
                 </h3>
-                <p className="text-white/70 mb-4 text-sm">
+                <p className="text-gray-700 mb-4 text-sm">
                   Let's discuss how CPGIO can accelerate your eCommerce growth.
                 </p>
                 <a

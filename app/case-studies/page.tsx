@@ -87,22 +87,22 @@ export default function CaseStudiesPage() {
                   </div>
 
                   {/* Brand */}
-                  <h3 className="text-2xl font-bold text-white mb-2">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
                     {caseStudy.brand}
                   </h3>
 
                   {/* Challenge */}
-                  <p className="text-white/70 mb-4 flex-grow">
+                  <p className="text-gray-700 mb-4 flex-grow">
                     {caseStudy.challenge}
                   </p>
 
                   {/* Featured Result */}
                   {firstResult && (
                     <div className="mb-4 p-3 rounded-lg bg-white/5 border border-white/10">
-                      <div className="text-sm text-white/60 mb-1">
+                      <div className="text-sm text-gray-600 mb-1">
                         {firstResult[0]}
                       </div>
-                      <div className="text-xl font-bold text-[var(--color-accent-teal)]">
+                      <div className="text-xl font-bold text-[var(--color-accent-blue)]">
                         {firstResult[1]}
                       </div>
                     </div>
