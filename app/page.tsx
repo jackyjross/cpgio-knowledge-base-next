@@ -42,10 +42,10 @@ export default function HomePage() {
   ];
 
   return (
-    <main className="bg-background">
+    <main>
       <Hero />
 
-      <section className="border-t border-border">
+      <section>
         <div className="container mx-auto px-4 sm:px-6 py-16 sm:py-24 md:py-32">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12 sm:mb-16">

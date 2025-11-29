@@ -3,50 +3,27 @@
 
 @layer base {
   :root {
-    /* Radix UI inspired light theme */
-    --background: 0 0% 100%;
-    --foreground: 206 24% 7%;
-    --card: 0 0% 100%;
-    --card-foreground: 206 24% 7%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 206 24% 7%;
-    --primary: 206 100% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 11% 96%;
-    --secondary-foreground: 206 24% 7%;
-    --muted: 210 11% 96%;
-    --muted-foreground: 215 13% 34%;
-    --accent: 210 11% 96%;
-    --accent-foreground: 206 24% 7%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 214 14% 90%;
-    --input: 214 14% 90%;
-    --ring: 206 100% 50%;
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    /* Radix UI inspired dark theme */
-    --background: 222 47% 11%;
+    /* Radix UI dark theme - matching their homepage */
+    --background: 250 24% 10%;
     --foreground: 210 40% 98%;
-    --card: 217 33% 17%;
+    --card: 250 20% 14%;
     --card-foreground: 210 40% 98%;
-    --popover: 217 33% 17%;
+    --popover: 250 20% 14%;
     --popover-foreground: 210 40% 98%;
-    --primary: 206 100% 50%;
+    --primary: 217 91% 60%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 217 33% 17%;
+    --secondary: 250 20% 18%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
+    --muted: 250 20% 18%;
     --muted-foreground: 215 20% 65%;
-    --accent: 217 33% 17%;
+    --accent: 250 20% 18%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 206 100% 50%;
+    --border: 250 20% 20%;
+    --input: 250 20% 18%;
+    --ring: 217 91% 60%;
+    --radius: 0.75rem;
   }
 }
 
@@ -54,25 +31,28 @@
   * {
     border-color: hsl(var(--border));
   }
+
   body {
-    background-color: hsl(var(--background));
+    background: linear-gradient(135deg, hsl(250 24% 10%) 0%, hsl(250 20% 14%) 50%, hsl(240 20% 12%) 100%);
+    background-attachment: fixed;
     color: hsl(var(--foreground));
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
   }
 
   /* Clean borders and subtle shadows */
   .shadow-sm {
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.3);
   }
 
   .shadow {
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3);
   }
 
   .shadow-md {
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
   }
 }
 

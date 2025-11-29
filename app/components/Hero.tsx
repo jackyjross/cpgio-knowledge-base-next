@@ -6,11 +6,11 @@ import { Button } from "./ui/button";
 
 export default function Hero() {
   return (
-    <section className="relative bg-background">
+    <section className="relative">
       <div className="container mx-auto px-4 sm:px-6 py-24 sm:py-32 md:py-40">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-muted/50 text-sm font-medium text-muted-foreground">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-sm font-medium text-primary">
             Knowledge Base
           </div>
 
@@ -27,13 +27,13 @@ export default function Hero() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Button asChild size="lg" className="text-base">
+            <Button asChild size="lg" className="text-base bg-primary hover:bg-primary/90">
               <Link href="/capabilities">
                 Explore Capabilities
                 <ArrowRight className="ml-2 h-4 w-4 arrow-glow" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="text-base">
+            <Button asChild variant="outline" size="lg" className="text-base border-primary/30 hover:bg-primary/10">
               <Link href="/rfp-center">
                 Access RFP Center
               </Link>
