@@ -1,9 +1,9 @@
 "use client";
 
 import Hero from "./components/Hero";
-import GlassCard from "./components/GlassCard";
 import { TrendingUp, ShoppingCart, Smartphone, Megaphone, Package } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./components/ui/card";
 
 export default function HomePage() {
   const router = useRouter();
@@ -42,23 +42,46 @@ export default function HomePage() {
   ];
 
   return (
-    <main>
+    <main className="bg-background">
       <Hero />
 
-      <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 max-w-7xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 md:mb-16 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
-          Strategic Capabilities
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {pillars.map((pillar) => (
-            <GlassCard
-              key={pillar.slug}
-              title={pillar.title}
-              description={pillar.description}
-              icon={pillar.icon}
-              onClick={() => router.push(`/capabilities#${pillar.slug}`)}
-            />
-          ))}
+      <section className="border-t border-border">
+        <div className="container mx-auto px-4 sm:px-6 py-16 sm:py-24 md:py-32">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
+                Strategic Capabilities
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Comprehensive eCommerce solutions across five strategic pillars
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {pillars.map((pillar) => {
+                const Icon = pillar.icon;
+                return (
+                  <Card
+                    key={pillar.slug}
+                    className="cursor-pointer hover:shadow-md transition-all hover:border-primary/50"
+                    onClick={() => router.push(`/capabilities#${pillar.slug}`)}
+                  >
+                    <CardHeader>
+                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                        <Icon className="w-6 h-6 text-primary" />
+                      </div>
+                      <CardTitle className="text-xl">
+                        {pillar.title}
+                      </CardTitle>
+                      <CardDescription className="text-base leading-relaxed">
+                        {pillar.description}
+                      </CardDescription>
+                    </CardHeader>
+                  </Card>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
     </main>
