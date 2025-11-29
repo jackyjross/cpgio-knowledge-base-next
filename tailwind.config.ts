@@ -8,51 +8,63 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
       colors: {
-        // Override gray scale to be inverted for dark theme
-        gray: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#cbd5e1',  // Inverted for dark theme
-          700: '#e2e8f0',  // Inverted for dark theme
-          800: '#f1f5f9',  // Inverted for dark theme
-          900: '#f8fafc',  // Inverted for dark theme
-        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         primary: {
-          50: 'rgba(59, 130, 246, 0.05)',
-          100: 'rgba(59, 130, 246, 0.1)',
-          200: 'rgba(59, 130, 246, 0.2)',
-          300: 'rgba(59, 130, 246, 0.3)',
-          400: 'rgba(59, 130, 246, 0.4)',
-          500: '#3b82f6',
-          600: '#0066cc',
-          700: '#0052a3',
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          blue: '#3b82f6',
-          teal: '#14b8a6',
-          orange: '#f97316',
-          purple: '#a855f7',
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
         },
-        cpg: {
-          blue: "#0056b3",
-          dark: "#0a192f",
-          glass: "rgba(255, 255, 255, 0.05)",
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
       },
-      backgroundImage: {
-        "hero-glow": "conic-gradient(from 180deg at 50% 50%, #0056b3 0deg, #a855f7 180deg, #0056b3 360deg)",
-        "mesh": "radial-gradient(at 40% 20%, hsla(228,100%,74%,0.1) 0px, transparent 50%), radial-gradient(at 80% 0%, hsla(189,100%,56%,0.1) 0px, transparent 50%)",
-      },
-      animation: {
-        "blob": "blob 7s infinite",
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
         blob: {
           "0%": { transform: "translate(0px, 0px) scale(1)" },
           "33%": { transform: "translate(30px, -50px) scale(1.1)" },
@@ -60,9 +72,14 @@ const config: Config = {
           "100%": { transform: "translate(0px, 0px) scale(1)" },
         },
       },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "blob": "blob 7s infinite",
+      },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
 
 export default config;

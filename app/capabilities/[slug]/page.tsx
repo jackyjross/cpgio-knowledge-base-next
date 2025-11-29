@@ -3,8 +3,9 @@ import Link from 'next/link';
 import { capabilities, getCapabilityById } from '@/lib/data/capabilities';
 import { ArrowLeft, CheckCircle2 } from 'lucide-react';
 import type { Metadata } from 'next';
-import { MeshGradient } from '@/app/components/ui/MeshGradient';
-import { GlassCard } from '@/app/components/ui/GlassCard';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/app/components/ui/card';
+import { Button } from '@/app/components/ui/button';
+import { Badge } from '@/app/components/ui/badge';
 import { FadeIn } from '@/app/components/animations/FadeIn';
 import { CountUp } from '@/app/components/animations/CountUp';
 import { CopyBox } from '@/app/components/ui/CopyBox';
@@ -63,10 +64,8 @@ ${capability.kpis.map(kpi => `• ${kpi.metric}: ${kpi.value} - ${kpi.descriptio
 Related Case Studies: ${capability.relatedCaseStudies.join(', ')}`;
 
   return (
-    <>
-      <MeshGradient />
-
-      <div className="min-h-screen p-8 relative">
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto p-8">
         <div className="max-w-5xl mx-auto space-y-12">
           {/* Breadcrumb */}
           <FadeIn>
@@ -95,65 +94,64 @@ Related Case Studies: ${capability.relatedCaseStudies.join(', ')}`;
           </FadeIn>
 
           {/* Header */}
-          <FadeIn delay={0.2}>
-            <GlassCard className="p-10">
-              <div className="space-y-6">
-                <div className="inline-block px-4 py-2 bg-blue-100 text-blue-700 text-sm font-bold rounded-full border border-blue-200">
-                  {capability.category}
-                </div>
-                <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 bg-clip-text text-transparent leading-tight">
-                  {capability.title}
-                </h1>
-                <p className="text-2xl text-slate-700 leading-relaxed font-medium">{capability.description}</p>
-
-                <div className="flex items-center gap-3 text-sm text-slate-600 pt-4">
-                  <span className="font-semibold text-slate-900">Pillar:</span>
-                  <span className="px-3 py-1 bg-slate-100 rounded-full font-medium">{capability.pillar}</span>
-                </div>
+          <Card>
+            <CardHeader className="space-y-6">
+              <Badge variant="secondary" className="w-fit">
+                {capability.category}
+              </Badge>
+              <CardTitle className="text-5xl md:text-6xl">
+                {capability.title}
+              </CardTitle>
+              <CardDescription className="text-xl">
+                {capability.description}
+              </CardDescription>
+              <div className="flex items-center gap-3 text-sm pt-4">
+                <span className="font-semibold">Pillar:</span>
+                <Badge variant="outline">{capability.pillar}</Badge>
               </div>
-            </GlassCard>
-          </FadeIn>
+            </CardHeader>
+          </Card>
 
           {/* Key Points */}
-          <FadeIn delay={0.3}>
-            <GlassCard className="p-10">
-              <h2 className="text-3xl font-bold text-slate-900 mb-8">Key Points</h2>
-              <div className="space-y-5">
+          <Card>
+            <CardHeader>
+              <CardTitle>Key Points</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
                 {capability.keyPoints.map((point, idx) => (
-                  <div key={idx} className="flex gap-4 group">
-                    <CheckCircle2 className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-                    <p className="text-slate-700 text-lg leading-relaxed">{point}</p>
+                  <div key={idx} className="flex gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <p className="text-base leading-relaxed">{point}</p>
                   </div>
                 ))}
               </div>
-            </GlassCard>
-          </FadeIn>
+            </CardContent>
+          </Card>
 
           {/* Service-Level KPIs */}
-          <FadeIn delay={0.4}>
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
-                Service-Level KPIs
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {capability.kpis.map((kpi, idx) => (
-                  <FadeIn key={idx} delay={0.45 + idx * 0.05}>
-                    <GlassCard className="p-8 group hover:scale-105 transition-transform">
-                      <div className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent mb-4">
-                        <CountUp value={kpi.value} />
-                      </div>
-                      <div className="text-lg font-bold text-slate-900 mb-2">
-                        {kpi.metric}
-                      </div>
-                      <div className="text-sm text-slate-600 leading-relaxed">
-                        {kpi.description}
-                      </div>
-                    </GlassCard>
-                  </FadeIn>
-                ))}
-              </div>
+          <div className="space-y-6">
+            <h2 className="text-3xl font-bold tracking-tight">
+              Service-Level KPIs
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {capability.kpis.map((kpi, idx) => (
+                <Card key={idx} className="hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <div className="text-4xl font-bold mb-2">
+                      <CountUp value={kpi.value} />
+                    </div>
+                    <CardTitle className="text-xl">
+                      {kpi.metric}
+                    </CardTitle>
+                    <CardDescription>
+                      {kpi.description}
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
             </div>
-          </FadeIn>
+          </div>
 
           {/* RFP Copy Box */}
           <FadeIn delay={0.6}>
@@ -168,57 +166,58 @@ Related Case Studies: ${capability.relatedCaseStudies.join(', ')}`;
 
           {/* Related Case Studies */}
           {capability.relatedCaseStudies.length > 0 && (
-            <FadeIn delay={0.7}>
-              <GlassCard className="p-10">
-                <h2 className="text-3xl font-bold text-slate-900 mb-6">Related Case Studies</h2>
-                <div className="flex flex-wrap gap-3 mb-4">
+            <Card>
+              <CardHeader>
+                <CardTitle>Related Case Studies</CardTitle>
+                <CardDescription>
+                  Case studies coming soon with detailed results and metrics.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2">
                   {capability.relatedCaseStudies.map((caseStudyId) => (
-                    <div
+                    <Badge
                       key={caseStudyId}
-                      className="px-5 py-3 bg-gradient-to-r from-accent-teal/10 to-accent-blue/10 text-accent-teal rounded-xl text-sm font-bold border border-accent-teal/20 hover:scale-105 transition-transform"
+                      variant="secondary"
+                      className="text-sm px-3 py-1"
                     >
                       {caseStudyId.split('-').map(word =>
                         word.charAt(0).toUpperCase() + word.slice(1)
                       ).join(' ')}
-                    </div>
+                    </Badge>
                   ))}
                 </div>
-                <p className="text-sm text-gray-600">
-                  Case studies coming soon with detailed results and metrics.
-                </p>
-              </GlassCard>
-            </FadeIn>
+              </CardContent>
+            </Card>
           )}
 
           {/* CTA Section */}
-          <FadeIn delay={0.8}>
-            <GlassCard className="p-12 text-center">
-              <div className="space-y-6 max-w-2xl mx-auto">
-                <h3 className="text-3xl font-bold bg-gradient-to-r from-primary-600 to-accent-purple bg-clip-text text-transparent">
-                  Want to learn more about {capability.title}?
-                </h3>
-                <p className="text-gray-600 text-lg">
-                  Contact our team to discuss how this capability can drive results for your brand.
-                </p>
-                <div className="flex gap-4 justify-center pt-4">
-                  <a
-                    href="mailto:sales@cpgio.com"
-                    className="px-8 py-4 bg-gradient-to-r from-primary-600 to-accent-blue text-white rounded-xl font-bold text-lg hover:shadow-glow-lg hover:scale-105 transition-all"
-                  >
+          <Card className="text-center">
+            <CardHeader>
+              <CardTitle className="text-3xl">
+                Want to learn more about {capability.title}?
+              </CardTitle>
+              <CardDescription className="text-lg pt-2">
+                Contact our team to discuss how this capability can drive results for your brand.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button asChild size="lg">
+                  <a href="mailto:sales@cpgio.com">
                     Contact Sales
                   </a>
-                  <Link
-                    href="/capabilities"
-                    className="px-8 py-4 bg-white/50 backdrop-blur-sm border-2 border-primary-200 rounded-xl font-bold text-lg text-primary-700 hover:bg-white/70 hover:scale-105 transition-all"
-                  >
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <Link href="/capabilities">
                     Explore More Capabilities
                   </Link>
-                </div>
+                </Button>
               </div>
-            </GlassCard>
-          </FadeIn>
+            </CardContent>
+          </Card>
         </div>
       </div>
-    </>
+    </div>
   );
 }

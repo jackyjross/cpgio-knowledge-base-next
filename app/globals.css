@@ -1,137 +1,80 @@
 @import "tailwindcss";
 
-@theme {
-  /* Brand Colors */
-  --color-primary-600: #0066cc;
-  --color-primary-700: #0052a3;
-  --color-primary-50: #e6f2ff;
-
-  --color-accent-blue: #3b82f6;
-  --color-accent-teal: #14b8a6;
-  --color-accent-orange: #f97316;
-  --color-accent-purple: #a855f7;
-
-  /* Semantic Colors */
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-danger: #ef4444;
-
-  /* Animation */
-  --animate-blob: blob 7s infinite;
-
-  /* Border Radius */
-  --radius-2xl: 16px;
-  --radius-3xl: 24px;
-}
-
-@keyframes blob {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1);
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
   }
-  33% {
-    transform: translate(30px, -50px) scale(1.1);
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
   }
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
-/* Dark Theme - Root Styles */
-:root {
-  color-scheme: dark;
+/* Custom color utilities for specific use cases */
+.bg-chart-1 {
+  background-color: hsl(221.2 83.2% 53.3%); /* Blue */
 }
 
-body {
-  background-color: #020617;
-  color: #f1f5f9;
-  background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, #020617 100%);
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.bg-chart-2 {
+  background-color: hsl(173 58% 39%); /* Teal */
 }
 
-/* Default text colors - can be overridden by Tailwind classes */
-h1, h2, h3, h4, h5, h6 {
-  color: inherit;
+.bg-chart-3 {
+  background-color: hsl(262 83% 58%); /* Purple */
 }
 
-p {
-  color: inherit;
+.bg-chart-4 {
+  background-color: hsl(47 96% 53%); /* Orange */
 }
 
-/* Override Tailwind gray classes to use white/slate for dark theme */
-.text-gray-900 {
-  color: #f1f5f9 !important;
-}
-
-.text-gray-700 {
-  color: #cbd5e1 !important;
-}
-
-.text-gray-600 {
-  color: #94a3b8 !important;
-}
-
-.text-gray-500 {
-  color: #64748b !important;
-}
-
-.text-gray-400 {
-  color: #475569 !important;
-}
-
-/* Background overrides for dark theme - only override very transparent whites */
-.bg-white\/50 {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-}
-
-.bg-white\/70 {
-  background-color: rgba(255, 255, 255, 0.05) !important;
-}
-
-/* Keep white/90 as-is for GlassCard */
-/* .bg-white\/90 is not overridden - it stays at rgba(255, 255, 255, 0.9) */
-
-.bg-gradient-to-r.from-primary-50 {
-  background-image: linear-gradient(to right, rgba(59, 130, 246, 0.1), rgba(20, 184, 166, 0.1)) !important;
-}
-
-/* Card text colors - only apply to very dark backgrounds */
-.bg-white\/5 p,
-.bg-white\/5 h1,
-.bg-white\/5 h2,
-.bg-white\/5 h3,
-.bg-white\/5 h4,
-.bg-white\/5 h5,
-.bg-white\/5 h6 {
-  color: #f1f5f9 !important;
-}
-
-/* Light cards (bg-white/90) should use dark text from Tailwind classes */
-.bg-white\/90 h1,
-.bg-white\/90 h2,
-.bg-white\/90 h3,
-.bg-white\/90 h4,
-.bg-white\/90 h5,
-.bg-white\/90 h6,
-.bg-white\/90 p {
-  color: inherit !important;
-}
-
-/* Border overrides */
-.border-primary-200 {
-  border-color: rgba(59, 130, 246, 0.3) !important;
-}
-
-.border-blue-200 {
-  border-color: rgba(59, 130, 246, 0.3) !important;
-}
-
-/* Ensure links are visible */
-a {
-  color: #3b82f6;
-}
-
-a:hover {
-  color: #60a5fa;
+.bg-chart-5 {
+  background-color: hsl(142 76% 36%); /* Green */
 }

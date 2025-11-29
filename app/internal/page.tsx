@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { MeshGradient } from "../components/ui/MeshGradient";
-import { GlassCard } from "../components/ui/GlassCard";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../components/ui/card";
+import { Button } from "../components/ui/button";
+import { Badge } from "../components/ui/badge";
+import { Separator } from "../components/ui/separator";
 import { FadeIn } from "../components/animations/FadeIn";
 import {
   LayoutDashboard,
@@ -91,198 +93,188 @@ export default function InternalDashboard() {
   ];
 
   return (
-    <main className="min-h-screen relative">
-      <MeshGradient />
-
-      <div className="max-w-7xl mx-auto px-4 py-12 relative z-10">
+    <main className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 py-12">
         {/* Header */}
-        <FadeIn>
-          <div className="mb-12">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                <LayoutDashboard className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-4xl font-bold text-slate-900">
-                  Internal Dashboard
-                </h1>
-                <p className="text-lg text-slate-600 mt-1">
-                  CPGIO Knowledge Base Management & Tools
-                </p>
-              </div>
+        <div className="mb-12">
+          <div className="flex items-center gap-4 mb-2">
+            <div className="w-12 h-12 rounded-lg bg-primary flex items-center justify-center">
+              <LayoutDashboard className="w-6 h-6 text-primary-foreground" />
+            </div>
+            <div>
+              <h1 className="text-4xl font-bold tracking-tight">
+                Internal Dashboard
+              </h1>
+              <p className="text-lg text-muted-foreground mt-1">
+                CPGIO Knowledge Base Management & Tools
+              </p>
             </div>
           </div>
-        </FadeIn>
+        </div>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
-              <FadeIn key={stat.label} delay={0.1 + index * 0.05}>
-                <GlassCard
-                  onClick={() => router.push(stat.link)}
-                  className="cursor-pointer"
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <div className={`w-12 h-12 rounded-xl ${
-                      stat.color === 'blue' ? 'bg-blue-500' :
-                      stat.color === 'teal' ? 'bg-teal-500' :
-                      stat.color === 'orange' ? 'bg-orange-500' :
-                      'bg-green-500'
-                    } flex items-center justify-center shadow-lg`}>
-                      <Icon className="w-6 h-6 text-white" />
-                    </div>
-                    <ArrowRight className="w-5 h-5 text-slate-400" />
+              <Card
+                key={stat.label}
+                className="cursor-pointer hover:shadow-lg transition-shadow"
+                onClick={() => router.push(stat.link)}
+              >
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                    stat.color === 'blue' ? 'bg-chart-1' :
+                    stat.color === 'teal' ? 'bg-chart-2' :
+                    stat.color === 'orange' ? 'bg-chart-4' :
+                    'bg-chart-5'
+                  }`}>
+                    <Icon className="w-5 h-5 text-white" />
                   </div>
-                  <div className="text-4xl font-bold text-slate-900 mb-2">
+                  <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-bold mb-1">
                     {stat.value}
                   </div>
-                  <div className="text-sm font-medium text-slate-600">
+                  <p className="text-sm text-muted-foreground">
                     {stat.label}
-                  </div>
-                </GlassCard>
-              </FadeIn>
+                  </p>
+                </CardContent>
+              </Card>
             );
           })}
         </div>
 
         {/* Tools Section */}
-        <FadeIn delay={0.3}>
-          <div className="mb-12">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-white" />
-              </div>
-              <h2 className="text-3xl font-bold text-slate-900">
-                Internal Tools
-              </h2>
+        <div className="mb-12">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+              <Sparkles className="w-5 h-5 text-primary-foreground" />
             </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {tools.map((tool, index) => {
-                const Icon = tool.icon;
-                return (
-                  <FadeIn key={tool.title} delay={0.35 + index * 0.05}>
-                    <GlassCard
-                      onClick={() => router.push(tool.href)}
-                      className="cursor-pointer h-full"
-                    >
-                      <div className="flex items-start gap-4 mb-6">
-                        <div className={`w-14 h-14 rounded-xl shadow-lg flex items-center justify-center flex-shrink-0 ${
-                          tool.color === 'blue' ? 'bg-gradient-to-br from-blue-500 to-blue-600' :
-                          tool.color === 'teal' ? 'bg-gradient-to-br from-teal-500 to-teal-600' :
-                          'bg-gradient-to-br from-purple-500 to-purple-600'
-                        }`}>
-                          <Icon className="w-7 h-7 text-white" />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-xl font-bold text-slate-900 mb-2">
-                            {tool.title}
-                          </h3>
-                          <p className="text-base text-slate-600">
-                            {tool.description}
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="space-y-3 mb-6">
-                        {tool.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-center gap-3 text-sm text-slate-700">
-                            <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                              <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
-                            </div>
-                            <span>{feature}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="mt-auto pt-4 border-t border-slate-200">
-                        <div className="flex items-center justify-between text-blue-600 font-semibold text-sm">
-                          <span>Open Tool</span>
-                          <ArrowRight className="w-4 h-4" />
-                        </div>
-                      </div>
-                    </GlassCard>
-                  </FadeIn>
-                );
-              })}
-            </div>
+            <h2 className="text-3xl font-bold tracking-tight">
+              Internal Tools
+            </h2>
           </div>
-        </FadeIn>
 
-        {/* Recent Activity */}
-        <FadeIn delay={0.5}>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Activity Feed */}
-            <div className="lg:col-span-2">
-              <GlassCard>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center">
-                    <Clock className="w-5 h-5 text-slate-700" />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900">
-                    Recent Activity
-                  </h3>
-                </div>
-
-                <div className="space-y-4">
-                  {recentActivity.map((activity, index) => (
-                    <div key={index} className="flex items-start gap-4 pb-4 border-b border-slate-200 last:border-0 last:pb-0">
-                      <div className="w-2 h-2 rounded-full bg-blue-600 mt-2"></div>
-                      <div className="flex-1">
-                        <div className="text-sm font-medium text-slate-900">
-                          {activity.action}
-                        </div>
-                        <div className="text-sm text-slate-700">
-                          {activity.item}
-                        </div>
+            {tools.map((tool, index) => {
+              const Icon = tool.icon;
+              return (
+                <Card
+                  key={tool.title}
+                  className="cursor-pointer hover:shadow-lg transition-shadow flex flex-col"
+                  onClick={() => router.push(tool.href)}
+                >
+                  <CardHeader>
+                    <div className="flex items-start gap-4">
+                      <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                        tool.color === 'blue' ? 'bg-chart-1' :
+                        tool.color === 'teal' ? 'bg-chart-2' :
+                        'bg-chart-3'
+                      }`}>
+                        <Icon className="w-6 h-6 text-white" />
                       </div>
-                      <div className="text-xs text-slate-600">
-                        {activity.time}
+                      <div className="flex-1">
+                        <CardTitle className="text-xl mb-2">
+                          {tool.title}
+                        </CardTitle>
+                        <CardDescription className="text-sm">
+                          {tool.description}
+                        </CardDescription>
                       </div>
                     </div>
-                  ))}
-                </div>
-              </GlassCard>
-            </div>
-
-            {/* Quick Actions */}
-            <div>
-              <GlassCard>
-                <h3 className="text-xl font-bold text-slate-900 mb-6">
-                  Quick Actions
-                </h3>
-
-                <div className="space-y-3">
-                  <button
-                    onClick={() => router.push("/internal/ai-qa")}
-                    className="w-full px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium text-sm transition-colors flex items-center justify-between"
-                  >
-                    <span>Ask AI Question</span>
-                    <MessageSquare className="w-4 h-4" />
-                  </button>
-
-                  <button
-                    onClick={() => router.push("/internal/rfp-analyzer")}
-                    className="w-full px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-900 rounded-lg font-medium text-sm transition-colors flex items-center justify-between"
-                  >
-                    <span>Analyze RFP</span>
-                    <FileText className="w-4 h-4" />
-                  </button>
-
-                  <button
-                    onClick={() => router.push("/")}
-                    className="w-full px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-900 rounded-lg font-medium text-sm transition-colors flex items-center justify-between"
-                  >
-                    <span>View Public Site</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </GlassCard>
-            </div>
+                  </CardHeader>
+                  <CardContent className="flex-1">
+                    <div className="space-y-2">
+                      {tool.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-center gap-2 text-sm">
+                          <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                          <span>{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                  <CardFooter className="pt-0">
+                    <Button variant="ghost" className="w-full justify-between">
+                      <span>Open Tool</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </Button>
+                  </CardFooter>
+                </Card>
+              );
+            })}
           </div>
-        </FadeIn>
+        </div>
+
+        {/* Recent Activity */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Activity Feed */}
+          <Card className="lg:col-span-2">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-lg bg-muted flex items-center justify-center">
+                  <Clock className="w-5 h-5 text-muted-foreground" />
+                </div>
+                <CardTitle>Recent Activity</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {recentActivity.map((activity, index) => (
+                  <div key={index} className="flex items-start gap-4">
+                    <div className="w-2 h-2 rounded-full bg-primary mt-2"></div>
+                    <div className="flex-1 space-y-1">
+                      <p className="text-sm font-medium">
+                        {activity.action}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        {activity.item}
+                      </p>
+                    </div>
+                    <time className="text-xs text-muted-foreground">
+                      {activity.time}
+                    </time>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Quick Actions */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Quick Actions</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <Button
+                onClick={() => router.push("/internal/ai-qa")}
+                className="w-full justify-between"
+              >
+                <span>Ask AI Question</span>
+                <MessageSquare className="w-4 h-4" />
+              </Button>
+
+              <Button
+                onClick={() => router.push("/internal/rfp-analyzer")}
+                variant="outline"
+                className="w-full justify-between"
+              >
+                <span>Analyze RFP</span>
+                <FileText className="w-4 h-4" />
+              </Button>
+
+              <Button
+                onClick={() => router.push("/")}
+                variant="outline"
+                className="w-full justify-between"
+              >
+                <span>View Public Site</span>
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </main>
   );
