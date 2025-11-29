@@ -78,3 +78,14 @@
 .bg-chart-5 {
   background-color: hsl(142 76% 36%); /* Green */
 }
+
+/* Glowing purple arrow style */
+.arrow-glow {
+  color: hsl(262 83% 58%); /* Purple */
+  filter: drop-shadow(0 0 8px hsl(262 83% 58% / 0.6));
+  transition: filter 0.3s ease;
+}
+
+.arrow-glow:hover {
+  filter: drop-shadow(0 0 12px hsl(262 83% 58% / 0.8));
+}

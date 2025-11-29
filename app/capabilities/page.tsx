@@ -16,7 +16,7 @@ export default function CapabilitiesPage() {
             href="/"
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-4 h-4 arrow-glow" />
             <span>Back to Home</span>
           </Link>
 

@@ -32,7 +32,7 @@ export default function Hero() {
             <Link href="/capabilities">
               <button className="group relative px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-semibold transition-all shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)]">
                 Explore Capabilities
-                <ArrowRight className="inline-block ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+                <ArrowRight className="inline-block ml-2 arrow-glow group-hover:translate-x-1 transition-transform" size={20} />
               </button>
             </Link>
             <Link href="/rfp-center">

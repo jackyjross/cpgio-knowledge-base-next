@@ -131,7 +131,7 @@ export default function InternalDashboard() {
                   }`}>
                     <Icon className="w-5 h-5 text-white" />
                   </div>
-                  <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                  <ArrowRight className="w-4 h-4 arrow-glow" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-3xl font-bold mb-1">
@@ -198,7 +198,7 @@ export default function InternalDashboard() {
                   <CardFooter className="pt-0">
                     <Button variant="ghost" className="w-full justify-between">
                       <span>Open Tool</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-4 h-4 arrow-glow" />
                     </Button>
                   </CardFooter>
                 </Card>
@@ -270,7 +270,7 @@ export default function InternalDashboard() {
                 className="w-full justify-between"
               >
                 <span>View Public Site</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 arrow-glow" />
               </Button>
             </CardContent>
           </Card>

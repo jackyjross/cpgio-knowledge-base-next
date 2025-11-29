@@ -111,7 +111,7 @@ export default function CaseStudiesPage() {
                   {/* CTA */}
                   <div className="flex items-center text-[var(--color-accent-blue)] font-medium text-sm mt-auto">
                     View Case Study
-                    <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="w-4 h-4 ml-2 arrow-glow transition-transform group-hover:translate-x-1" />
                   </div>
                 </GlassCard>
               </FadeIn>

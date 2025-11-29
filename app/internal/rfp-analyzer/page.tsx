@@ -114,7 +114,7 @@ export default function RFPAnalyzerPage() {
             href="/internal"
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium mb-4"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-4 h-4 arrow-glow" />
             <span>Back to Dashboard</span>
           </Link>
 
