@@ -68,30 +68,26 @@ Related Case Studies: ${capability.relatedCaseStudies.join(', ')}`;
       <div className="container mx-auto p-8">
         <div className="max-w-5xl mx-auto space-y-12">
           {/* Breadcrumb */}
-          <FadeIn>
-            <div className="flex items-center gap-2 text-sm text-slate-600 font-medium">
-              <Link href="/" className="hover:text-blue-600 transition-colors">
-                Home
-              </Link>
-              <span>›</span>
-              <Link href="/capabilities" className="hover:text-blue-600 transition-colors">
-                Capabilities
-              </Link>
-              <span>›</span>
-              <span className="text-slate-900">{capability.title}</span>
-            </div>
-          </FadeIn>
+          <div className="flex items-center gap-2 text-sm text-muted-foreground font-medium">
+            <Link href="/" className="hover:text-foreground transition-colors">
+              Home
+            </Link>
+            <span>›</span>
+            <Link href="/capabilities" className="hover:text-foreground transition-colors">
+              Capabilities
+            </Link>
+            <span>›</span>
+            <span className="text-foreground">{capability.title}</span>
+          </div>
 
           {/* Back Button */}
-          <FadeIn delay={0.1}>
-            <Link
-              href="/capabilities"
-              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors font-medium"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span>Back to Capabilities</span>
-            </Link>
-          </FadeIn>
+          <Link
+            href="/capabilities"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Capabilities</span>
+          </Link>
 
           {/* Header */}
           <Card>
