@@ -127,31 +127,29 @@ export default function AIQAPage() {
 
       <div className="max-w-5xl mx-auto px-4 py-12 relative z-10">
         {/* Header */}
-        <FadeIn>
-          <div className="mb-8">
-            <Link
-              href="/internal"
-              className="inline-flex items-center text-slate-600 hover:text-slate-900 transition-colors mb-4"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Dashboard
-            </Link>
+        <div className="mb-8">
+          <Link
+            href="/internal"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium mb-4"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Dashboard</span>
+          </Link>
 
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                <MessageSquare className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-4xl font-bold text-slate-900">
-                  AI Q&A Assistant
-                </h1>
-                <p className="text-slate-700">
-                  Ask questions about CPGIO capabilities and get instant answers
-                </p>
-              </div>
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+              <MessageSquare className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-4xl font-bold text-slate-900">
+                AI Q&A Assistant
+              </h1>
+              <p className="text-slate-700">
+                Ask questions about CPGIO capabilities and get instant answers
+              </p>
             </div>
           </div>
-        </FadeIn>
+        </div>
 
         {/* Chat Interface */}
         <FadeIn delay={0.1}>

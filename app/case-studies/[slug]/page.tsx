@@ -59,15 +59,13 @@ export default async function CaseStudyDetailPage({ params }: Props) {
 
       <div className="max-w-6xl mx-auto px-4 py-12 relative z-10">
         {/* Back Link */}
-        <FadeIn>
-          <Link
-            href="/case-studies"
-            className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors mb-8"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Case Studies
-          </Link>
-        </FadeIn>
+        <Link
+          href="/case-studies"
+          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium mb-8"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          <span>Back to Case Studies</span>
+        </Link>
 
         {/* Header */}
         <FadeIn delay={0.1}>

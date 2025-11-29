@@ -14,10 +14,10 @@ export default function CapabilitiesPage() {
         <div className="space-y-4">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-accent-blue hover:text-accent-blue/80 transition-colors"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span className="text-sm font-medium">Back to Home</span>
+            <span>Back to Home</span>
           </Link>
 
           <div>
