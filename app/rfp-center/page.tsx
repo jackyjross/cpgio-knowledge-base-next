@@ -40,8 +40,8 @@ export default function RFPCenterPage() {
 
   return (
     <main className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-12">
-        <div className="max-w-5xl mx-auto space-y-8">
+      <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
+        <div className="max-w-5xl mx-auto space-y-6 sm:space-y-8">
           {/* Back Link */}
           <Link
             href="/"
@@ -52,16 +52,16 @@ export default function RFPCenterPage() {
           </Link>
 
           {/* Header */}
-          <div className="text-center space-y-4">
-            <h1 className="text-5xl font-bold tracking-tight">
+          <div className="text-center space-y-3 sm:space-y-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
               RFP Answer Center
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
               Pre-written answers to common RFP questions. All responses backed by real KPIs and case studies.
             </p>
-            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
               <span>{rfpAnswers.length} answers available</span>
-              <span>•</span>
+              <span className="hidden sm:inline">•</span>
               <span>Click to expand, copy to clipboard</span>
             </div>
           </div>
@@ -117,10 +117,10 @@ export default function RFPCenterPage() {
                 <Card key={rfp.question} className="overflow-hidden">
                   <button
                     onClick={() => setExpandedId(expandedId === rfp.question ? null : rfp.question)}
-                    className="w-full p-6 flex items-start justify-between text-left hover:bg-accent transition-colors"
+                    className="w-full p-4 sm:p-6 flex items-start justify-between text-left hover:bg-accent transition-colors"
                   >
-                    <div className="flex-1 pr-4">
-                      <h3 className="text-lg font-semibold mb-2">
+                    <div className="flex-1 pr-3 sm:pr-4">
+                      <h3 className="text-base sm:text-lg font-semibold mb-2">
                         {rfp.question}
                       </h3>
                       <div className="flex flex-wrap gap-2">
@@ -148,7 +148,7 @@ export default function RFPCenterPage() {
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
                       >
-                        <div className="px-6 pb-6 space-y-4">
+                        <div className="px-4 sm:px-6 pb-4 sm:pb-6 space-y-4">
                           {/* Answer */}
                           <Card>
                             <CardContent className="pt-6">
@@ -230,7 +230,7 @@ export default function RFPCenterPage() {
           {/* Footer CTA */}
           <Card className="text-center">
             <CardHeader>
-              <CardTitle className="text-3xl">
+              <CardTitle className="text-2xl sm:text-3xl">
                 Need a custom answer?
               </CardTitle>
               <CardDescription className="text-lg pt-2">

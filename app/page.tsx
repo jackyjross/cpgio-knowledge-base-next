@@ -45,11 +45,11 @@ export default function HomePage() {
     <main>
       <Hero />
 
-      <section className="py-32 px-4 max-w-7xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
+      <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 max-w-7xl mx-auto">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 md:mb-16 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
           Strategic Capabilities
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {pillars.map((pillar) => (
             <GlassCard
               key={pillar.slug}

@@ -94,18 +94,18 @@ export default function InternalDashboard() {
 
   return (
     <main className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Header */}
-        <div className="mb-12">
-          <div className="flex items-center gap-4 mb-2">
-            <div className="w-12 h-12 rounded-lg bg-primary flex items-center justify-center">
-              <LayoutDashboard className="w-6 h-6 text-primary-foreground" />
+        <div className="mb-8 sm:mb-12">
+          <div className="flex items-center gap-3 sm:gap-4 mb-2">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-primary flex items-center justify-center">
+              <LayoutDashboard className="w-5 h-5 sm:w-6 sm:h-6 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="text-4xl font-bold tracking-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">
                 Internal Dashboard
               </h1>
-              <p className="text-lg text-muted-foreground mt-1">
+              <p className="text-sm sm:text-base md:text-lg text-muted-foreground mt-1">
                 CPGIO Knowledge Base Management & Tools
               </p>
             </div>
@@ -113,7 +113,7 @@ export default function InternalDashboard() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
@@ -147,17 +147,17 @@ export default function InternalDashboard() {
         </div>
 
         {/* Tools Section */}
-        <div className="mb-12">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-              <Sparkles className="w-5 h-5 text-primary-foreground" />
+        <div className="mb-8 sm:mb-12">
+          <div className="flex items-center gap-3 mb-4 sm:mb-6">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary flex items-center justify-center">
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
             </div>
-            <h2 className="text-3xl font-bold tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
               Internal Tools
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {tools.map((tool, index) => {
               const Icon = tool.icon;
               return (
@@ -208,7 +208,7 @@ export default function InternalDashboard() {
         </div>
 
         {/* Recent Activity */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           {/* Activity Feed */}
           <Card className="lg:col-span-2">
             <CardHeader>
